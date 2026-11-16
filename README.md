@@ -45,8 +45,6 @@ the `claude-plugin` target in `packages/web/electron/ai/client-targets.ts`, and
 
 - A released Diffchecker does not have the registration yet, so against an
   installed app the file comes from the helper below.
-- Setting up both the plugin and Claude Code gives Claude Code every tool
-  twice. Nothing removes the other entry.
 
 ## Try it
 
@@ -65,8 +63,11 @@ claude plugin validate packages/claude-plugin/plugin
 claude --plugin-dir packages/claude-plugin/plugin
 ```
 
-`/mcp` then lists the server as `plugin:diffchecker:diffchecker`, next to the
-app's own `diffchecker` entry, so each tool appears twice while both exist.
+`/mcp` then lists the server as `plugin:diffchecker:diffchecker`. A build of
+this branch removes its own Claude Code entry when the plugin is set up, and
+the other way round, because with both Claude Code gets every tool twice and
+can call a copy the user has not approved. The helper does not do that, so
+with an installed release both entries exist until one is removed by hand.
 
 Run the launcher tests:
 

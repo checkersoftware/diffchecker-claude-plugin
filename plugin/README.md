@@ -36,6 +36,9 @@ You can also do step 2 by hand: in Diffchecker, open Preferences, then
 Integrations, find "AI Assistants", and click **Set up** next to "Claude
 plugin".
 
+If you had already set up Claude Code in Diffchecker, setting up the plugin
+removes that entry, so Claude does not get every Diffchecker tool twice.
+
 ## What the plugin runs and reads
 
 The plugin contains no part of Diffchecker and makes no network requests. It

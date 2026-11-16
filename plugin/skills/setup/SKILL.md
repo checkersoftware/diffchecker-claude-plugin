@@ -48,6 +48,10 @@ time it starts.
 2. Tell the user: "Diffchecker is asking whether to set up the Claude plugin.
    Click Set up, then tell me when it is done." Wait for the user.
 
+   If Diffchecker was already set up in Claude Code on its own, the prompt
+   says that setting up the plugin removes that entry. That is expected: with
+   both, every Diffchecker tool would appear twice.
+
 3. Reload the plugin so it starts again. In Claude Code the user runs
    `/reload-plugins` or starts a new session. Anywhere else, the user starts a
    new session.
