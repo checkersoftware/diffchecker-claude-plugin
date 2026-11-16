@@ -72,7 +72,7 @@ with an installed release both entries exist until one is removed by hand.
 Run the launcher tests:
 
 ```sh
-node --test packages/claude-plugin/test/
+pnpm claude-plugin:test
 ```
 
 To undo the helper, delete `~/.diffchecker/claude-plugin.json`.

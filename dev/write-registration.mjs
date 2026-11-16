@@ -1,7 +1,7 @@
-// Prototype only, and not part of the plugin. Diffchecker Desktop does not
-// write the plugin's registration file yet, so this copies the launch entry
-// the app already wrote for Claude Code into the place the plugin reads. It
-// never prints the key.
+// Prototype only, and not part of the plugin. A released Diffchecker Desktop
+// does not write the plugin's registration file yet, so this copies the launch
+// entry it already wrote for Claude Code into the place the plugin reads. It
+// leaves that entry in place, and never prints the key.
 import { mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
 import { homedir } from 'node:os';
 import path from 'node:path';
