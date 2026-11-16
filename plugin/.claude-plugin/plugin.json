@@ -1,0 +1,14 @@
+{
+  "name": "diffchecker",
+  "displayName": "Diffchecker",
+  "version": "0.1.0",
+  "description": "Redline Word and PDF documents and compare text, images, and spreadsheets on your computer with Diffchecker Desktop.",
+  "author": {
+    "name": "Diffchecker",
+    "url": "https://www.diffchecker.com"
+  },
+  "homepage": "https://www.diffchecker.com/mcp/",
+  "privacyPolicyUrl": "https://www.diffchecker.com/desktop-privacy/",
+  "supportUrl": "https://www.diffchecker.com/contact/",
+  "keywords": ["diff", "compare", "redline", "docx", "pdf", "spreadsheet"]
+}
