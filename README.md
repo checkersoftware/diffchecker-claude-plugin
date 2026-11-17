@@ -63,7 +63,7 @@ claude --plugin-dir plugin
 Run the launcher tests:
 
 ```sh
-node --test test/
+node --test 'test/*.test.mjs'
 ```
 
 ## License

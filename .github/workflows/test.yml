@@ -21,4 +21,5 @@ jobs:
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
         with:
           node-version: ${{ matrix.node }}
-      - run: node --test test/
+      # Node before 26 takes a folder here as a script to run, not tests.
+      - run: node --test 'test/*.test.mjs'
