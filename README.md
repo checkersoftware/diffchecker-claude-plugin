@@ -1,16 +1,25 @@
-# Diffchecker plugin for Claude (prototype)
+# Diffchecker plugin for Claude
 
-A Claude plugin that connects Claude Code and Cowork to the desktop MCP server
-in Diffchecker Desktop (`packages/mcp`, `packages/web/electron/ai`). Anthropic's
-directory no longer lists a local MCP server by itself; it has to ship inside a
-plugin, and a plugin may hold only readable text files. So the plugin holds a
-launcher that starts the installed app.
+A Claude plugin that connects Claude Code and Cowork to Diffchecker Desktop,
+so Claude can redline Word and PDF documents and compare text, images, and
+spreadsheets on your computer. The comparisons run in the installed app; this
+plugin holds only a launcher that starts it, and two skills.
 
 | Folder | What it is |
 | --- | --- |
-| `plugin/` | The plugin as Claude loads it. This folder alone is what the directory would scan and what users would install. |
-| `test/` | Tests for the launcher, run with Node's own test runner so they need no dependencies. |
-| `dev/` | Prototype helpers. Never part of the plugin. |
+| `plugin/` | The plugin as Claude loads it. Its [README](plugin/README.md) is the user-facing page. |
+| `.claude-plugin/` | The marketplace file, so the plugin installs straight from this repository. |
+| `test/` | Tests for the launcher, run with Node's own test runner, so they need no dependencies. |
+
+## Install
+
+Diffchecker Desktop must be installed and set up for the plugin first; the
+plugin's [setup skill](plugin/skills/setup/SKILL.md) walks through it. Then, in
+Claude Code:
+
+```
+/plugin install diffchecker --marketplace checkersoftware/diffchecker-claude-plugin
+```
 
 ## How it connects
 
@@ -30,64 +39,34 @@ Claude's own input and output streams:
 }
 ```
 
-`command`, `args`, and `env` are the launch entry the app already builds for
-every assistant (`launchEntry` in `packages/web/electron/ai/runtime-state.ts`),
-so the Windows stdio launcher and `ELECTRON_RUN_AS_NODE` come along without
-any platform code in the plugin.
+Diffchecker Desktop writes that file, readable by its owner only, when the
+user sets up "Claude plugin" in Preferences > Integrations > AI Assistants or
+confirms the prompt that `diffchecker://ai-assistants?client=claude-plugin`
+opens. The launcher refuses a file that is a link, belongs to another user, or
+other users can read, and never prints the key.
 
-Diffchecker writes the file when the user sets up the "Claude plugin" row in
-Preferences > Integrations > AI Assistants, or confirms the prompt that
-`diffchecker://ai-assistants?client=claude-plugin` opens. That registration is
-the `claude-plugin` target in `packages/web/electron/ai/client-targets.ts`, and
-"Client registration" in `packages/mcp/README.md` has its rules.
+The app writes this format, and its own tests run this launcher against a file
+the app wrote. A change to the format has to land in both places.
 
-## Not built yet
+## Develop
 
-- A released Diffchecker does not have the registration yet, so against an
-  installed app the file comes from the helper below.
-
-## Try it
-
-With a build of this branch, click Set up next to "Claude plugin" in
-Diffchecker. With an installed release, set up Claude Code there instead, then
-copy that entry to where the plugin reads it. The helper never prints the key:
+Check the plugin and the marketplace, and load the plugin for one session:
 
 ```sh
-node packages/claude-plugin/dev/write-registration.mjs
+claude plugin validate plugin --profile directory
+claude plugin validate .
+claude --plugin-dir plugin
 ```
 
-Check the plugin and load it for one session:
-
-```sh
-claude plugin validate packages/claude-plugin/plugin
-claude --plugin-dir packages/claude-plugin/plugin
-```
-
-`/mcp` then lists the server as `plugin:diffchecker:diffchecker`. A build of
-this branch removes its own Claude Code entry when the plugin is set up, and
-the other way round, because with both Claude Code gets every tool twice and
-can call a copy the user has not approved. The helper does not do that, so
-with an installed release both entries exist until one is removed by hand.
+`/mcp` then lists the server as `plugin:diffchecker:diffchecker`.
 
 Run the launcher tests:
 
 ```sh
-pnpm claude-plugin:test
+node --test test/
 ```
 
-To undo the helper, delete `~/.diffchecker/claude-plugin.json`.
+## License
 
-## Moving it to its own repository
-
-The directory reads a plugin from a GitHub repository that must be public
-before the listing goes live, so the plugin cannot be published from this one.
-Nothing here imports from the rest of the repository. To move it with its
-history:
-
-```sh
-git subtree split --prefix=packages/claude-plugin -b claude-plugin-export
-```
-
-Push that branch to the new repository, drop `dev/`, and submit with `plugin`
-as the plugin path. The MIT license in `plugin/LICENSE` covers the plugin's
-files only; Diffchecker Desktop keeps its own terms.
+[MIT](LICENSE). The license covers this repository only; Diffchecker Desktop
+keeps its own terms.

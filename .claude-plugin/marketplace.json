@@ -1,0 +1,17 @@
+{
+  "name": "diffchecker",
+  "owner": {
+    "name": "Diffchecker",
+    "url": "https://www.diffchecker.com"
+  },
+  "metadata": {
+    "description": "Diffchecker plugins for Claude."
+  },
+  "plugins": [
+    {
+      "name": "diffchecker",
+      "source": "./plugin",
+      "description": "Redline Word and PDF documents and compare text, images, and spreadsheets on your computer with Diffchecker Desktop."
+    }
+  ]
+}

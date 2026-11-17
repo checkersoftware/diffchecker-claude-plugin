@@ -26,7 +26,12 @@ app on your computer.
 
 ## Setup
 
-1. Install the plugin.
+1. Install the plugin. In Claude Code:
+
+   ```
+   /plugin install diffchecker --marketplace checkersoftware/diffchecker-claude-plugin
+   ```
+
 2. Ask Claude to "set up Diffchecker". Diffchecker opens and asks you to
    confirm.
 3. Click **Set up** in Diffchecker.
