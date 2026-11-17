@@ -26,11 +26,21 @@ app on your computer.
 
 ## Setup
 
-1. Install the plugin. In Claude Code:
+1. Install the plugin in the Claude desktop app. Open **Customize** >
+   **Plugins**, select **Add marketplace**, enter
+   `checkersoftware/diffchecker-claude-plugin`, and install Diffchecker. That
+   saves it to your Claude account, so chat, Cowork, and Claude Code all load
+   it.
+
+   To install it for Claude Code alone, run this in Claude Code instead:
 
    ```
    /plugin install diffchecker --marketplace checkersoftware/diffchecker-claude-plugin
    ```
+
+   A copy installed this way stays on that computer and does not reach chat or
+   Cowork. Step 3 removes Diffchecker's Claude Desktop entry, so if you use
+   Diffchecker in chat or Cowork, install the plugin in the Claude app.
 
 2. Ask Claude to "set up Diffchecker". Diffchecker opens and asks you to
    confirm.

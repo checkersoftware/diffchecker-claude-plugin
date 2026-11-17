@@ -2,8 +2,9 @@
 
 A Claude plugin that connects Claude Code, and chat and Cowork in the Claude
 desktop app, to Diffchecker Desktop, so Claude can redline Word and PDF
-documents and compare text, images, and spreadsheets on your computer. The comparisons run in the installed app; this
-plugin holds only a launcher that starts it, and two skills.
+documents and compare text, images, and spreadsheets on your computer. The
+comparisons run in the installed app; this plugin holds only a launcher that
+starts it, and two skills.
 
 | Folder | What it is |
 | --- | --- |
@@ -13,13 +14,20 @@ plugin holds only a launcher that starts it, and two skills.
 
 ## Install
 
-Diffchecker Desktop must be installed and set up for the plugin first; the
-plugin's [setup skill](plugin/skills/setup/SKILL.md) walks through it. Then, in
-Claude Code:
+In the Claude desktop app, open **Customize** > **Plugins**, select **Add
+marketplace**, enter `checkersoftware/diffchecker-claude-plugin`, and install
+Diffchecker. That saves it to your Claude account, so chat, Cowork, and Claude
+Code all load it. Then ask Claude to "set up Diffchecker"; the plugin's
+[setup skill](plugin/skills/setup/SKILL.md) connects it to Diffchecker Desktop.
+
+To install it for Claude Code alone, run this in Claude Code instead:
 
 ```
 /plugin install diffchecker --marketplace checkersoftware/diffchecker-claude-plugin
 ```
+
+A copy installed this way stays on that computer and does not reach chat or
+Cowork. The plugin's [README](plugin/README.md) has the full setup steps.
 
 ## How it connects
 
