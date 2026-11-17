@@ -48,13 +48,15 @@ time it starts.
 2. Tell the user: "Diffchecker is asking whether to set up the Claude plugin.
    Click Set up, then tell me when it is done." Wait for the user.
 
-   If Diffchecker was already set up in Claude Code on its own, the prompt
-   says that setting up the plugin removes that entry. That is expected: with
-   both, every Diffchecker tool would appear twice.
+   If Diffchecker was already set up in Claude Code or Claude Desktop on its
+   own, the prompt says that setting up the plugin removes those entries. That
+   is expected: with both, every Diffchecker tool would appear twice.
 
 3. Reload the plugin so it starts again. In Claude Code the user runs
    `/reload-plugins` or starts a new session. Anywhere else, the user starts a
-   new session.
+   new session. If the prompt said it removes Diffchecker from Claude Desktop,
+   the user quits the Claude app fully and opens it again instead: until then
+   it keeps the server it loaded at launch, and every tool appears twice.
 
 4. Try it: compare two files the user names by full path.
 

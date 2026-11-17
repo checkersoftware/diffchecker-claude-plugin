@@ -1,8 +1,8 @@
 # Diffchecker plugin for Claude
 
-A Claude plugin that connects Claude Code and Cowork to Diffchecker Desktop,
-so Claude can redline Word and PDF documents and compare text, images, and
-spreadsheets on your computer. The comparisons run in the installed app; this
+A Claude plugin that connects Claude Code, and chat and Cowork in the Claude
+desktop app, to Diffchecker Desktop, so Claude can redline Word and PDF
+documents and compare text, images, and spreadsheets on your computer. The comparisons run in the installed app; this
 plugin holds only a launcher that starts it, and two skills.
 
 | Folder | What it is |

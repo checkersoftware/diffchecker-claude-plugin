@@ -21,8 +21,8 @@ app on your computer.
 - Diffchecker Desktop, signed in, on macOS or Windows.
 - A Diffchecker Pro, Legal, or Enterprise plan, or an active free trial.
 - [Node.js](https://nodejs.org/) on your `PATH`.
-- Claude Code, or a Cowork session that runs on your computer. Chat on
-  claude.ai does not load local tools.
+- Claude Code, or chat or a Cowork session in the Claude desktop app on your
+  computer. Chat on claude.ai does not load local tools.
 
 ## Setup
 
@@ -35,14 +35,18 @@ app on your computer.
 2. Ask Claude to "set up Diffchecker". Diffchecker opens and asks you to
    confirm.
 3. Click **Set up** in Diffchecker.
-4. Start a new session, or run `/reload-plugins` in Claude Code.
+4. Start a new session, or run `/reload-plugins` in Claude Code. If setup
+   removed Diffchecker from Claude Desktop, quit the Claude app and open it
+   again instead.
 
 You can also do step 2 by hand: in Diffchecker, open Preferences, then
 Integrations, find "AI Assistants", and click **Set up** next to "Claude
 plugin".
 
-If you had already set up Claude Code in Diffchecker, setting up the plugin
-removes that entry, so Claude does not get every Diffchecker tool twice.
+If you had already set up Claude Code or Claude Desktop in Diffchecker, setting
+up the plugin removes those entries, so Claude does not get every Diffchecker
+tool twice. Quit the Claude desktop app first if Diffchecker asks you to:
+while it is open, it can put its entry back.
 
 ## What the plugin runs and reads
 

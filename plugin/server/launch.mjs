@@ -118,11 +118,22 @@ function exitWith(message) {
   process.exit(1);
 }
 
+// An inherited ELECTRON_RUN_AS_NODE starts Diffchecker as plain Node, which
+// cannot serve the tools. On Windows the registration sets it itself, for the
+// relay it starts, and that copy still applies.
+function inheritedEnvironment() {
+  return Object.fromEntries(
+    Object.entries(process.env).filter(
+      ([key]) => key.toUpperCase() !== 'ELECTRON_RUN_AS_NODE',
+    ),
+  );
+}
+
 function start({ command, args, env }) {
   // The app speaks MCP on the streams it inherits, so nothing is relayed or
   // parsed here.
   const child = spawn(command, args, {
-    env: { ...process.env, ...env },
+    env: { ...inheritedEnvironment(), ...env },
     stdio: 'inherit',
     windowsHide: true,
   });

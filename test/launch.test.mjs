@@ -38,6 +38,7 @@ process.stdin.on('data', (chunk) => {
         line,
         argument: process.argv[2],
         mode: process.env.DIFFCHECKER_MCP_MODE,
+        runAsNode: process.env.ELECTRON_RUN_AS_NODE,
       }) + '\\n',
     );
     end = buffer.indexOf('\\n');
@@ -82,9 +83,9 @@ function fakeRegistration(overrides = {}) {
   };
 }
 
-function startLauncher() {
+function startLauncher(environment = {}) {
   const child = spawn(process.execPath, [launcher], {
-    env: { ...process.env, HOME: home, USERPROFILE: home },
+    env: { ...process.env, HOME: home, USERPROFILE: home, ...environment },
   });
   let stdout = '';
   let stderr = '';
@@ -112,8 +113,8 @@ function startLauncher() {
   return { child, closed, firstLine };
 }
 
-async function runLauncher(input = '') {
-  const { child, closed } = startLauncher();
+async function runLauncher(input = '', environment = {}) {
+  const { child, closed } = startLauncher(environment);
   child.stdin.end(input);
   return closed;
 }
@@ -129,6 +130,27 @@ test('connects the client to the app named in the registration', async () => {
     argument: 'from-args',
     mode: 'desktop',
   });
+});
+
+test('does not pass on an inherited ELECTRON_RUN_AS_NODE', async () => {
+  writeRegistration(fakeRegistration());
+
+  const result = await runLauncher('hello\n', { ELECTRON_RUN_AS_NODE: '1' });
+
+  assert.equal(result.code, 0);
+  assert.equal(result.lines[1].runAsNode, undefined);
+});
+
+test('keeps the ELECTRON_RUN_AS_NODE the registration sets', async () => {
+  writeRegistration(
+    fakeRegistration({
+      env: { DIFFCHECKER_MCP_MODE: 'desktop', ELECTRON_RUN_AS_NODE: '1' },
+    }),
+  );
+
+  const result = await runLauncher('hello\n', { ELECTRON_RUN_AS_NODE: '' });
+
+  assert.equal(result.lines[1].runAsNode, '1');
 });
 
 test('exits cleanly when the client closes its side', async () => {
