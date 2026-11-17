@@ -42,8 +42,9 @@ app on your computer.
    Cowork. Step 3 removes Diffchecker's Claude Desktop entry, so if you use
    Diffchecker in chat or Cowork, install the plugin in the Claude app.
 
-2. Ask Claude to "set up Diffchecker". Diffchecker opens and asks you to
-   confirm.
+2. Ask Claude to "set up Diffchecker". In Claude Code, Diffchecker opens and
+   asks you to confirm. In chat and Cowork, Claude cannot open Diffchecker for
+   you, so it asks you to open Preferences in Diffchecker instead.
 3. Click **Set up** in Diffchecker.
 4. Start a new session, or run `/reload-plugins` in Claude Code. If setup
    removed Diffchecker from Claude Desktop, quit the Claude app and open it

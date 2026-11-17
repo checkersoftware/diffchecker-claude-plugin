@@ -27,7 +27,15 @@ time it starts.
 
 ## Steps
 
-1. Open the setup link.
+1. Open the setup link, but only from a shell on the user's own computer.
+   In Claude Code it is. In chat and Cowork it is not: chat runs code in a
+   sandbox, and Cowork runs shell commands in a virtual machine, so a command
+   there cannot open Diffchecker. If `uname -s` prints `Linux`, the shell is not
+   on the user's computer either, because Diffchecker Desktop runs only on macOS
+   and Windows. In any of these cases, or if you cannot run commands, skip the
+   commands below and ask the user to open Diffchecker, go to Preferences, then
+   Integrations, find "AI Assistants", and click "Set up" next to "Claude
+   plugin".
 
    macOS:
 
@@ -41,12 +49,10 @@ time it starts.
    powershell.exe -NoProfile -Command "Start-Process 'diffchecker://ai-assistants?client=claude-plugin'"
    ```
 
-   If you cannot run commands, ask the user to open Diffchecker, go to
-   Preferences, then Integrations, find "AI Assistants", and click "Set up"
-   next to "Claude plugin".
-
-2. Tell the user: "Diffchecker is asking whether to set up the Claude plugin.
-   Click Set up, then tell me when it is done." Wait for the user.
+2. If the link opened, tell the user: "Diffchecker is asking whether to set up
+   the Claude plugin. Click Set up, then tell me when it is done." On the
+   Preferences route, ask them to tell you once they have clicked Set up. Wait
+   for the user.
 
    If Diffchecker was already set up in Claude Code or Claude Desktop on its
    own, the prompt says that setting up the plugin removes those entries. That
@@ -64,7 +70,7 @@ time it starts.
 
 | What happens | Cause | What to tell the user |
 | --- | --- | --- |
-| The command fails because nothing opens `diffchecker://` links | Diffchecker Desktop is not installed | Install it from https://www.diffchecker.com/desktop/ |
+| On the user's own computer, the command fails because nothing opens `diffchecker://` links | Diffchecker Desktop is not installed | Install it from https://www.diffchecker.com/desktop/ |
 | Diffchecker opens with no prompt, or has no "Claude plugin" row | The installed Diffchecker is too old for this plugin | Update Diffchecker, then repeat step 1 |
 | "Your plan does not include AI assistants." | The plan needs upgrading | https://www.diffchecker.com/pricing/ |
 | A sign-in or welcome page | The user is signed out | Sign in to Diffchecker, then repeat step 1 |
