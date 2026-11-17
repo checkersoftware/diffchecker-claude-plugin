@@ -7,6 +7,7 @@
     "name": "Diffchecker",
     "url": "https://www.diffchecker.com"
   },
+  "license": "MIT",
   "homepage": "https://www.diffchecker.com/mcp/",
   "privacyPolicyUrl": "https://www.diffchecker.com/desktop-privacy/",
   "supportUrl": "https://www.diffchecker.com/contact/",

@@ -89,5 +89,5 @@ git subtree split --prefix=packages/claude-plugin -b claude-plugin-export
 ```
 
 Push that branch to the new repository, drop `dev/`, and submit with `plugin`
-as the plugin path. The plugin still needs a `LICENSE` file or a `license`
-field in `plugin.json` before the directory accepts it.
+as the plugin path. The MIT license in `plugin/LICENSE` covers the plugin's
+files only; Diffchecker Desktop keeps its own terms.
