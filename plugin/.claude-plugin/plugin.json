@@ -11,5 +11,6 @@
   "homepage": "https://www.diffchecker.com/mcp/",
   "privacyPolicyUrl": "https://www.diffchecker.com/desktop-privacy/",
   "supportUrl": "https://www.diffchecker.com/contact/",
+  "icon": "./.claude-plugin/icon.png",
   "keywords": ["diff", "compare", "redline", "docx", "pdf", "spreadsheet"]
 }
