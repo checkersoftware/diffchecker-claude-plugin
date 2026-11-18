@@ -5,10 +5,11 @@ description: Connect this plugin to the Diffchecker Desktop app installed on the
 
 # Set up Diffchecker
 
-The plugin does not contain Diffchecker. It starts the Diffchecker Desktop app
-that is installed on the user's computer. The user approves the connection
-once in the app, and the app then writes a small file the plugin reads each
-time it starts.
+The plugin does not contain Diffchecker. It starts `diffchecker-mcp`, a command
+that belongs to the Diffchecker Desktop app installed on the user's computer.
+The user approves the connection once in the app. The app then makes that
+command findable and writes a small file the command reads each time it
+starts.
 
 ## Rules
 
@@ -21,7 +22,6 @@ time it starts.
 
 - Diffchecker Desktop, up to date and signed in, on macOS or Windows.
 - A Diffchecker Pro, Legal, or Enterprise plan, or an active free trial.
-- Node.js on the user's `PATH`. The plugin starts with `node`.
 - Claude runs on the same computer and in the same desktop session as
   Diffchecker. This does not work over SSH, in a container, or in a browser.
 
@@ -64,6 +64,11 @@ time it starts.
    the user quits the Claude app fully and opens it again instead: until then
    it keeps the server it loaded at launch, and every tool appears twice.
 
+   On Windows the first setup adds a folder to the user's `PATH`, and programs
+   that are already open do not see it. If the tools are still missing there,
+   the user quits the Claude app and opens it again, or opens a new terminal
+   and starts Claude Code in it.
+
 4. Try it: compare two files the user names by full path.
 
 ## If it does not work
@@ -74,5 +79,6 @@ time it starts.
 | Diffchecker opens with no prompt, or has no "Claude plugin" row | The installed Diffchecker is too old for this plugin | Update Diffchecker, then repeat step 1 |
 | "Your plan does not include AI assistants." | The plan needs upgrading | https://www.diffchecker.com/pricing/ |
 | A sign-in or welcome page | The user is signed out | Sign in to Diffchecker, then repeat step 1 |
-| The tools are still missing after a reload | Node.js is not on the `PATH`, or the app was moved | Install Node.js; or click "Update" next to "Claude plugin" in Diffchecker |
+| The tools are still missing after a reload, and "Claude plugin" in Diffchecker says "Needs updating" | The app was moved or reinstalled somewhere else | Click "Update" next to "Claude plugin" in Diffchecker, then reload |
+| The tools are still missing, and Diffchecker shows "Claude plugin" as set up | Claude was open during setup, or Claude Code runs in a terminal whose `PATH` lacks `~/.local/bin` (macOS) | Quit Claude and open it again; in a terminal, `which diffchecker-mcp` (macOS) or `where diffchecker-mcp` (Windows) should print a path |
 | A tool returns `AUTHORIZATION_INVALID_CAPABILITY` | The key was regenerated | Click "Update" next to "Claude plugin" in Diffchecker, then reload |

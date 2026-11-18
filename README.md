@@ -3,14 +3,14 @@
 A Claude plugin that connects Claude Code, and chat and Cowork in the Claude
 desktop app, to Diffchecker Desktop, so Claude can redline Word and PDF
 documents and compare text, images, and spreadsheets on your computer. The
-comparisons run in the installed app; this plugin holds only a launcher that
-starts it, and two skills.
+comparisons run in the installed app. This plugin holds no program, only two
+skills and the setting that tells Claude to start the app's
+`diffchecker-mcp` command.
 
 | Folder | What it is |
 | --- | --- |
 | `plugin/` | The plugin as Claude loads it. Its [README](plugin/README.md) is the user-facing page. |
 | `.claude-plugin/` | The marketplace file, so the plugin installs straight from this repository. |
-| `test/` | Tests for the launcher, run with Node's own test runner, so they need no dependencies. |
 
 ## Install
 
@@ -31,9 +31,16 @@ Cowork. The plugin's [README](plugin/README.md) has the full setup steps.
 
 ## How it connects
 
-`plugin/.mcp.json` starts `node plugin/server/launch.mjs`. The launcher reads
-`~/.diffchecker/claude-plugin.json` and starts the program it names with
-Claude's own input and output streams:
+`plugin/.mcp.json` starts the command `diffchecker-mcp`, which Claude looks up
+the way a shell would. The command ships inside Diffchecker Desktop and stays
+there: setting the plugin up makes it findable, with a link at
+`~/.local/bin/diffchecker-mcp` on macOS and by adding its folder in the
+Diffchecker install to the user's `PATH` on Windows. Neither Claude Code nor
+the Claude desktop app gives a plugin's server a runtime such as Node.js, so
+the plugin cannot carry a script of its own.
+
+The command reads `~/.diffchecker/claude-plugin.json` and starts the program
+it names with Claude's own input and output streams:
 
 ```json
 {
@@ -50,11 +57,9 @@ Claude's own input and output streams:
 Diffchecker Desktop writes that file, readable by its owner only, when the
 user sets up "Claude plugin" in Preferences > Integrations > AI Assistants or
 confirms the prompt that `diffchecker://ai-assistants?client=claude-plugin`
-opens. The launcher refuses a file that is a link, belongs to another user, or
-other users can read, and never prints the key.
-
-The app writes this format, and its own tests run this launcher against a file
-the app wrote. A change to the format has to land in both places.
+opens. The command refuses a file that is a link, belongs to another user, or
+other users can read, and never prints the key. The file and the command both
+belong to the app, so the format changes only with a Diffchecker release.
 
 ## Develop
 
@@ -66,13 +71,8 @@ claude plugin validate .
 claude --plugin-dir plugin
 ```
 
-`/mcp` then lists the server as `plugin:diffchecker:diffchecker`.
-
-Run the launcher tests:
-
-```sh
-node --test 'test/*.test.mjs'
-```
+`/mcp` then lists the server as `plugin:diffchecker:diffchecker`, connected
+once Diffchecker Desktop has set the plugin up.
 
 ## License
 

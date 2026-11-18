@@ -20,7 +20,6 @@ app on your computer.
 
 - Diffchecker Desktop, signed in, on macOS or Windows.
 - A Diffchecker Pro, Legal, or Enterprise plan, or an active free trial.
-- [Node.js](https://nodejs.org/) on your `PATH`.
 - Claude Code, or chat or a Cowork session in the Claude desktop app on your
   computer. Chat on claude.ai does not load local tools.
 
@@ -48,7 +47,9 @@ app on your computer.
 3. Click **Set up** in Diffchecker.
 4. Start a new session, or run `/reload-plugins` in Claude Code. If setup
    removed Diffchecker from Claude Desktop, quit the Claude app and open it
-   again instead.
+   again instead. On Windows, do the same after the first setup, and open a
+   new terminal before starting Claude Code: setup adds a folder to your
+   `PATH`, which programs that are already open do not see.
 
 You can also do step 2 by hand: in Diffchecker, open Preferences, then
 Integrations, find "AI Assistants", and click **Set up** next to "Claude
@@ -61,13 +62,19 @@ while it is open, it can put its entry back.
 
 ## What the plugin runs and reads
 
-The plugin contains no part of Diffchecker and makes no network requests. It
-has one script, `server/launch.mjs`, which Claude starts with `node`. The
-script:
+The plugin contains no program and makes no network requests. It holds
+instructions for Claude and one setting: Claude starts the command
+`diffchecker-mcp`.
+
+That command is part of Diffchecker Desktop. It stays inside the app, and
+clicking **Set up** makes it findable: on macOS with a link at
+`~/.local/bin/diffchecker-mcp`, on Windows by adding its folder inside the
+Diffchecker install to your `PATH`. **Remove** in Diffchecker undoes that. The
+command:
 
 1. Reads `~/.diffchecker/claude-plugin.json`. Diffchecker Desktop writes this
    file when you click **Set up**. It holds the location of the Diffchecker app
-   and a key the app checks. The script refuses a file that other users can
+   and a key the app checks. The command refuses a file that other users can
    read or change.
 2. Starts the Diffchecker app named in that file, in its background mode for AI
    assistants, and connects Claude to it.
@@ -90,8 +97,11 @@ https://www.diffchecker.com/desktop-privacy/
 
 ## Troubleshooting
 
-- **The Diffchecker tools do not appear.** Check that `node --version` works in
-  a terminal, then ask Claude to "set up Diffchecker" again.
+- **The Diffchecker tools do not appear.** Update Diffchecker Desktop, then ask
+  Claude to "set up Diffchecker" again. If Diffchecker shows "Claude plugin" as
+  set up, quit Claude and open it again. For Claude Code in a terminal on
+  macOS, also check that `~/.local/bin` is on your `PATH`: `which
+  diffchecker-mcp` should print a path.
 - **`AUTHORIZATION_INVALID_CAPABILITY`.** The key changed. In Diffchecker,
   click **Update** next to "Claude plugin", then start a new session.
 - **`AUTHORIZATION_DISABLED`.** Turn on "Let AI assistants use Diffchecker" in
