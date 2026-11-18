@@ -99,9 +99,29 @@ https://www.diffchecker.com/desktop-privacy/
 
 - **The Diffchecker tools do not appear.** Update Diffchecker Desktop, then ask
   Claude to "set up Diffchecker" again. If Diffchecker shows "Claude plugin" as
-  set up, quit Claude and open it again. For Claude Code in a terminal on
-  macOS, also check that `~/.local/bin` is on your `PATH`: `which
-  diffchecker-mcp` should print a path.
+  set up, quit Claude and open it again. For Claude Code on macOS, in a
+  terminal or in the Claude app's Code tab, also check that `~/.local/bin` is
+  on your `PATH`: `which diffchecker-mcp` should print a path. If it prints
+  nothing, add `export PATH="$HOME/.local/bin:$PATH"` to `~/.zshrc`, then open
+  a new terminal or quit and reopen the Claude app.
+- **Claude Code background sessions do not get the tools (macOS).** Sessions
+  started with `claude --bg` or from `claude agents` run with only the system
+  `PATH`, so they do not find `diffchecker-mcp` even when your shell does. Set
+  the `PATH` for Claude Code in `~/.claude/settings.json`, adding `PATH` to its
+  `env` section if it already has one:
+
+  ```json
+  {
+    "env": {
+      "PATH": "/Users/you/.local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    }
+  }
+  ```
+
+  Write out every folder in full: `$PATH` and `~` are not expanded there. The
+  value replaces the `PATH` in every Claude Code session, so include every
+  folder your other tools need. `echo $PATH` in a terminal prints the list to
+  start from.
 - **`AUTHORIZATION_INVALID_CAPABILITY`.** The key changed. In Diffchecker,
   click **Update** next to "Claude plugin", then start a new session.
 - **`AUTHORIZATION_DISABLED`.** Turn on "Let AI assistants use Diffchecker" in
