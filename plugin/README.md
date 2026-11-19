@@ -48,9 +48,11 @@ app on your computer.
 4. In Claude Code, type `/mcp`, select the `diffchecker` server, and choose
    **Reconnect**. A new session is not enough: Claude Code skips a plugin
    server for 15 minutes after it fails to start, and it failed in any session
-   that started before setup. In chat and Cowork, start a new session. If
-   setup removed Diffchecker from Claude Desktop, quit the Claude app and open
-   it again.
+   that started before setup. If setup removed Diffchecker from Claude Code,
+   start a new session first and reconnect in that one: the session you set up
+   in keeps Diffchecker's old server, so it would get every tool twice. In chat
+   and Cowork, start a new session. If setup removed Diffchecker from Claude
+   Desktop, quit the Claude app and open it again.
 
    On Windows, after the first setup, quit the Claude app and open it again,
    and open a new terminal before starting Claude Code, then reconnect in

@@ -63,10 +63,14 @@ starts.
    `/reload-plugins` or a new session instead: in the Claude desktop app
    `/reload-plugins` does not reconnect plugin servers, and Claude Code skips a
    plugin server for 15 minutes after it fails to start, which it did in any
-   session that started before setup. In chat and Cowork, the user starts a
-   new session. If the prompt said it removes Diffchecker from Claude Desktop,
-   the user quits the Claude app fully and opens it again: until then it keeps
-   the server it loaded at launch, and every tool appears twice.
+   session that started before setup. If the prompt said it removes
+   Diffchecker from Claude Code, the user starts a new Claude Code session
+   first and reconnects in that one: a session keeps the servers it loaded at
+   start, so this one would have every tool twice. In chat and Cowork, the
+   user starts a new session. If the prompt said it removes Diffchecker from
+   Claude Desktop, the user quits the Claude app fully and opens it again:
+   until then it keeps the server it loaded at launch, and every tool appears
+   twice.
 
    On Windows the first setup adds a folder to the user's `PATH`, and programs
    that are already open do not see it, so Reconnect in a Claude Code that was
