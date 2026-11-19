@@ -1,7 +1,7 @@
 {
   "name": "diffchecker",
   "displayName": "Diffchecker",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Redline Word and PDF documents and compare text, images, and spreadsheets on your computer with Diffchecker Desktop.",
   "author": {
     "name": "Diffchecker",
