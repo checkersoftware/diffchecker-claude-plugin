@@ -59,11 +59,11 @@ starts.
    is expected: with both, every Diffchecker tool would appear twice.
 
 3. Start the plugin's server again. In Claude Code the user types `/mcp`,
-   selects the `diffchecker` server, and chooses Reconnect. Do not suggest
-   `/reload-plugins` or a new session instead: in the Claude desktop app
-   `/reload-plugins` does not reconnect plugin servers, and Claude Code skips a
-   plugin server for 15 minutes after it fails to start, which it did in any
-   session that started before setup. If the prompt said it removes
+   selects `plugin:diffchecker:diffchecker`, and chooses Reconnect. Do not
+   suggest `/reload-plugins` or a new session instead: in the Claude desktop
+   app `/reload-plugins` does not reconnect plugin servers, and Claude Code
+   skips a plugin server for 15 minutes after it fails to start, which it did
+   in any session that started before setup. If the prompt said it removes
    Diffchecker from Claude Code, the user starts a new Claude Code session
    first and reconnects in that one: a session keeps the servers it loaded at
    start, so this one would have every tool twice. In chat and Cowork, the
@@ -89,5 +89,5 @@ starts.
 | "Your plan does not include AI assistants." | The plan needs upgrading | https://www.diffchecker.com/pricing/ |
 | A sign-in or welcome page | The user is signed out | Sign in to Diffchecker, then repeat step 1 |
 | The tools are still missing after step 3, and "Claude plugin" in Diffchecker says "Needs updating" | The app was moved or reinstalled somewhere else | Click "Update" next to "Claude plugin" in Diffchecker, then repeat step 3 |
-| The tools are still missing, and Diffchecker shows "Claude plugin" as set up | Claude Code has not reconnected the server, Claude was open during setup, or Claude Code runs in a terminal whose `PATH` lacks `~/.local/bin` (macOS) | In Claude Code, reconnect `diffchecker` in `/mcp`; otherwise quit Claude and open it again. In a terminal, `which diffchecker-mcp` (macOS) or `where diffchecker-mcp` (Windows) should print a path |
+| The tools are still missing, and Diffchecker shows "Claude plugin" as set up | Claude Code has not reconnected the server, Claude was open during setup, or Claude Code runs in a terminal whose `PATH` lacks `~/.local/bin` (macOS) | In Claude Code, reconnect `plugin:diffchecker:diffchecker` in `/mcp`; otherwise quit Claude and open it again. In a terminal, `which diffchecker-mcp` (macOS) or `where diffchecker-mcp` (Windows) should print a path |
 | A tool returns `AUTHORIZATION_INVALID_CAPABILITY` | The key was regenerated | Click "Update" next to "Claude plugin" in Diffchecker, then repeat step 3 |
