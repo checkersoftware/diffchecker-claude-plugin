@@ -45,11 +45,17 @@ app on your computer.
    asks you to confirm. In chat and Cowork, Claude cannot open Diffchecker for
    you, so it asks you to open Preferences in Diffchecker instead.
 3. Click **Set up** in Diffchecker.
-4. Start a new session, or run `/reload-plugins` in Claude Code. If setup
-   removed Diffchecker from Claude Desktop, quit the Claude app and open it
-   again instead. On Windows, do the same after the first setup, and open a
-   new terminal before starting Claude Code: setup adds a folder to your
-   `PATH`, which programs that are already open do not see.
+4. In Claude Code, type `/mcp`, select the `diffchecker` server, and choose
+   **Reconnect**. A new session is not enough: Claude Code skips a plugin
+   server for 15 minutes after it fails to start, and it failed in any session
+   that started before setup. In chat and Cowork, start a new session. If
+   setup removed Diffchecker from Claude Desktop, quit the Claude app and open
+   it again.
+
+   On Windows, after the first setup, quit the Claude app and open it again,
+   and open a new terminal before starting Claude Code, then reconnect in
+   `/mcp` if the tools are missing: setup adds a folder to your `PATH`, which
+   programs that are already open do not see.
 
 You can also do step 2 by hand: in Diffchecker, open Preferences, then
 Integrations, find "AI Assistants", and click **Set up** next to "Claude
@@ -99,7 +105,8 @@ https://www.diffchecker.com/desktop-privacy/
 
 - **The Diffchecker tools do not appear.** Update Diffchecker Desktop, then ask
   Claude to "set up Diffchecker" again. If Diffchecker shows "Claude plugin" as
-  set up, quit Claude and open it again. For Claude Code on macOS, in a
+  set up, reconnect the `diffchecker` server in `/mcp` in Claude Code, or quit
+  Claude and open it again. For Claude Code on macOS, in a
   terminal or in the Claude app's Code tab, also check that `~/.local/bin` is
   on your `PATH`: `which diffchecker-mcp` should print a path. If it prints
   nothing, add `export PATH="$HOME/.local/bin:$PATH"` to `~/.zshrc`, then open
@@ -123,7 +130,8 @@ https://www.diffchecker.com/desktop-privacy/
   folder your other tools need. `echo $PATH` in a terminal prints the list to
   start from.
 - **`AUTHORIZATION_INVALID_CAPABILITY`.** The key changed. In Diffchecker,
-  click **Update** next to "Claude plugin", then start a new session.
+  click **Update** next to "Claude plugin", then reconnect the `diffchecker`
+  server in `/mcp` in Claude Code, or start a new session in chat and Cowork.
 - **`AUTHORIZATION_DISABLED`.** Turn on "Let AI assistants use Diffchecker" in
   Diffchecker Preferences.
 - **`LICENSE_INVALID` or `ENTITLEMENT_MISSING`.** Sign in to Diffchecker, or
