@@ -66,7 +66,9 @@ plugin".
 If you had already set up Claude Code or Claude Desktop in Diffchecker, setting
 up the plugin removes those entries, so Claude does not get every Diffchecker
 tool twice. Quit the Claude desktop app first if Diffchecker asks you to:
-while it is open, it can put its entry back.
+while it is open, it can put its entry back. On macOS, if your shell's `PATH`
+does not include `~/.local/bin`, Claude Code cannot start the plugin, so
+Diffchecker keeps Claude Code's own entry and says so.
 
 ## What the plugin runs and reads
 
@@ -112,7 +114,8 @@ https://www.diffchecker.com/desktop-privacy/
   terminal or in the Claude app's Code tab, also check that `~/.local/bin` is
   on your `PATH`: `which diffchecker-mcp` should print a path. If it prints
   nothing, add `export PATH="$HOME/.local/bin:$PATH"` to `~/.zshrc`, then open
-  a new terminal or quit and reopen the Claude app.
+  a new terminal or quit and reopen the Claude app. If Diffchecker then says
+  it is also set up in Claude Code, click **Remove** next to Claude Code.
 - **Claude Code background sessions do not get the tools (macOS).** Sessions
   started with `claude --bg` or from `claude agents` run with only the system
   `PATH`, so they do not find `diffchecker-mcp` even when your shell does. Set

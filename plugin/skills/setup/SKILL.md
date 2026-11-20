@@ -56,7 +56,12 @@ starts.
 
    If Diffchecker was already set up in Claude Code or Claude Desktop on its
    own, the prompt says that setting up the plugin removes those entries. That
-   is expected: with both, every Diffchecker tool would appear twice.
+   is expected: with both, every Diffchecker tool would appear twice. On macOS
+   it may instead say that Diffchecker in Claude Code stays, because the
+   shell's `PATH` does not include `~/.local/bin`. That is expected too: Claude
+   Code keeps its own `diffchecker` server, and the plugin's server cannot
+   start in Claude Code until that folder is on the `PATH`, so skip
+   reconnecting it there in step 3.
 
 3. Start the plugin's server again. In Claude Code the user types `/mcp`,
    selects `plugin:diffchecker:diffchecker`, and chooses Reconnect. Do not
