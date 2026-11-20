@@ -68,7 +68,9 @@ up the plugin removes those entries, so Claude does not get every Diffchecker
 tool twice. Quit the Claude desktop app first if Diffchecker asks you to:
 while it is open, it can put its entry back. On macOS, if your shell's `PATH`
 does not include `~/.local/bin`, Claude Code cannot start the plugin, so
-Diffchecker keeps Claude Code's own entry and says so.
+Diffchecker keeps Claude Code's own entry and says so. It also keeps that entry
+when it cannot read your shell's `PATH`. If Claude Code then gets every
+Diffchecker tool twice, click **Remove** next to "Claude Code" in Diffchecker.
 
 ## What the plugin runs and reads
 

@@ -63,6 +63,13 @@ starts.
    start in Claude Code until that folder is on the `PATH`, so skip
    reconnecting it there in step 3.
 
+   Or it may say that Diffchecker in Claude Code stays because Diffchecker
+   could not read the shell's `PATH`. Then reconnect in step 3 as usual. If
+   `/mcp` then shows both `diffchecker` and `plugin:diffchecker:diffchecker`
+   connected, every tool appears twice: the user clicks Remove next to
+   "Claude Code" in Diffchecker, starts a new Claude Code session, and
+   reconnects `plugin:diffchecker:diffchecker` there if it is not connected.
+
 3. Start the plugin's server again. In Claude Code the user types `/mcp`,
    selects `plugin:diffchecker:diffchecker`, and chooses Reconnect. Do not
    suggest `/reload-plugins` or a new session instead: in the Claude desktop
