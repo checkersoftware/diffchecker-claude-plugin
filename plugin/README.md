@@ -72,6 +72,8 @@ does not include `~/.local/bin`, Claude Code cannot start the plugin, so
 Diffchecker keeps Claude Code's own entry and says so. It also keeps that entry
 when it cannot read your shell's `PATH`. If Claude Code then gets every
 Diffchecker tool twice, click **Remove** next to "Claude Code" in Diffchecker.
+If that row has no Remove, because the entry was changed after setup or added
+some other way, run `claude mcp remove diffchecker --scope user` instead.
 
 ## What the plugin runs and reads
 

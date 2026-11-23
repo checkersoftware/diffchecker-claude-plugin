@@ -66,8 +66,10 @@ starts.
    Or it may say that Diffchecker in Claude Code stays because Diffchecker
    could not read the shell's `PATH`. Then reconnect in step 3 as usual. If
    `/mcp` then shows both Claude Code's own `diffchecker` and the plugin's
-   server connected, every tool appears twice: the user clicks Remove next to
-   "Claude Code" in Diffchecker, starts a new Claude Code session, and
+   server connected, every tool appears twice. Take out Claude Code's entry:
+   the user clicks Remove next to "Claude Code" in Diffchecker, or, if that
+   row has no Remove, you run `claude mcp remove diffchecker --scope user`
+   once the user agrees. Then the user starts a new Claude Code session and
    reconnects `plugin:diffchecker:diffchecker` there if it is not connected.
 
 3. Start the plugin's server again. In Claude Code the user types `/mcp`,
